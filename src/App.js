@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Header from "./components/Layout/Header";
 import Shoes from "./components/Products/Shoes";
+import CartProvider from "./store/CartProvider";
+import Cart from './components/Cart/Cart';
 
 
 function App() {
@@ -15,12 +17,13 @@ function App() {
   }
 
   return (
-    <>
-    <Header />
+    <CartProvider>
+    <Header onShowCart={showCartHandler} />
     <main>
       <Shoes />
     </main>
-    </>
+    {cartIsShown && <Cart onClose={hideCartHandler} />}
+    </CartProvider>
   );
 }
 
